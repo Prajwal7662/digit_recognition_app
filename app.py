@@ -1,17 +1,12 @@
 import joblib
-import os
 import streamlit as st
 
-model_path = "model.pkl"
+try:
+    model = joblib.load("model.pkl")
+    st.success("✅ Model loaded successfully!")
+except Exception as e:
+    st.error(f"❌ Failed to load model: {e}")
 
-if not os.path.exists(model_path):
-    st.error("❌ Model file not found! Please run train_model.py first.")
-else:
-    try:
-        model = joblib.load(model_path)
-        st.success("✅ Model loaded successfully!")
-    except Exception as e:
-        st.error(f"⚠️ Error loading model: {e}")
 # app.py
 import streamlit as st
 import numpy as np
