@@ -7,6 +7,7 @@ try:
 except Exception as e:
     st.error(f"❌ Failed to load model: {e}")
 
+
 # app.py
 import streamlit as st
 import numpy as np
