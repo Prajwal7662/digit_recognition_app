@@ -1,19 +1,23 @@
-# save_model_pickle.py
-import pickle
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+import joblib
 
-# Load the digits dataset
+# Load dataset
 X, y = load_digits(return_X_y=True)
+
+# Split data
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-# Train the Gradient Boosting Classifier
-gb = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3)
-gb.fit(X_train, y_train)
+# Train model
+model = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1, max_depth=3, random_state=42)
+model.fit(X_train, y_train)
 
-# Save the model using pickle
-with open('model.pkl', 'wb') as file:
-    pickle.dump(gb, file)
+# Evaluate
+y_pred = model.predict(X_test)
+print("✅ Accuracy:", accuracy_score(y_test, y_pred))
 
-print("✅ Model saved successfully as model.pkl")
+# Save model
+joblib.dump(model, "model.pkl")
+print("💾 model.pkl saved successfully!")
