@@ -1,5 +1,6 @@
 🔢 Digit Recognition App
 
+
 This project is an interactive Streamlit web application that allows users to draw handwritten digits (0–9) on a digital canvas.
 The app uses a Gradient Boosting Machine Learning model to predict which digit the user drew — in real-time.
 
